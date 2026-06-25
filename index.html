@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRT Horror Intro</title>
+  <link rel="stylesheet" href="cassusheet.css">
+</head>
+<body>
+<div id="introVideoContainer">
+
+  <button id="skipIntroBtn">
+    SKIP
+  </button>
+
+  <video
+    id="introVideo"
+    preload="auto"
+    playsinline
+  >
+    <source src="Intro.mp4" type="video/mp4">
+  </video>
+
+</div>
+
+<div class="game-screen">
+
+  <img src="home.png" alt="Background">
+
+  <div class="overlay"></div>
+
+</div>
+
+<div class="monitor-text" id="screenContent">
+    <div id="screenUI">
+    Hello, I am computer...<br><br>
+    You will be given some questions.<br>
+    Click anywhere to continue.
+    </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- 🎮 MAIN MENU -->
+<!-- ===================================================== -->
+
+<div id="mainMenu">
+
+  <div class="menu-overlay">
+
+    <h1 class="game-title">
+      LAST DAY AT WORK
+    </h1>
+
+    <button id="playBtn" class="menu-btn">
+      PLAY
+    </button>
+
+    <button id="exitBtn" class="menu-btn exit-btn">
+      EXIT
+    </button>
+
+  </div>
+
+    
+
+    <button class="fullscreen-btn" onclick="toggleFullscreen()">
+      Full Screen
+    </button>
+  </div>
+<script src="questions.js"></script>
+<script src="media.js"></script>
+<script src="style.js"></script>
+</body>
+</html>

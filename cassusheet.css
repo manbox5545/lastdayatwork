@@ -1,0 +1,415 @@
+html,
+body {
+
+  width: 100%;
+
+  height: 100%;
+
+  overflow: hidden;
+
+  background: black;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: black;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+}
+.game-screen img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.1);
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.03), rgba(0,0,0,0.55));
+  pointer-events: none;
+}
+
+#introVideoContainer {
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: black;
+
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#introVideo {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.input-box {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(216,255,225,0.3);
+  color: #d8ffe1;
+
+  padding: 10px 14px;
+
+  width: 220px;
+
+  outline: none;
+
+  margin-top: 12px;
+
+  font-family: "Courier New", monospace;
+
+  text-align: center;
+}
+
+.input-box::placeholder {
+  color: rgba(216,255,225,0.5);
+}
+.scanlines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0.03) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+.monitor-text {
+  position: absolute;
+
+  top: 33%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 32%;
+  height: 24%;
+
+  padding: 12px;
+
+  z-index: 50;
+
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  color: #d8ffe1;
+
+  font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+
+  text-shadow:
+    0 0 5px rgba(200,255,220,0.8),
+    0 0 12px rgba(200,255,220,0.5),
+    0 0 24px rgba(200,255,220,0.25);
+
+  letter-spacing: 1px;
+
+  font-family: "Courier New", monospace;
+
+  white-space: normal;
+
+  word-wrap: break-word;
+
+  border: 2px solid rgba(216,255,225,0.15);
+
+  border-radius: 8px;
+
+  animation: flicker 2s infinite;
+
+  user-select: none;
+}
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid #d8ffe1;
+  width: 0;
+  animation:
+    typing 4s steps(28, end) forwards,
+    blink 0.8s infinite;
+}
+.fullscreen-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 18px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  transition: 0.3s;
+  z-index: 10;
+}
+#screenUI {
+  width: 100%;
+}
+.fullscreen-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+.rotate-message {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  background: rgba(0,0,0,0.45);
+  padding: 8px 14px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  z-index: 20;
+}
+
+ /* ===================================================== */
+/* 🎮 MAIN MENU */
+/* ===================================================== */
+
+#mainMenu {
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,0.65),
+      rgba(0,0,0,0.85)
+    ),
+    url("menu-bg.png");
+
+  background-size: cover;
+
+  background-position: center;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 9999;
+}
+
+.menu-overlay {
+
+  text-align: center;
+}
+
+.game-title {
+
+  color: #d2c1b0;
+
+  font-size: 70px;
+
+  letter-spacing: 6px;
+
+  margin-bottom: 50px;
+
+  font-family: horrorFont, sans-serif;
+
+  text-shadow:
+    0 0 10px rgba(255,0,0,0.3),
+    0 0 25px rgba(0,0,0,1);
+}
+
+/* ===================================================== */
+/* ⏭️ SKIP BUTTON */
+/* ===================================================== */
+
+#skipIntroBtn {
+
+  position: absolute;
+
+  top: 20px;
+
+  right: 20px;
+
+  z-index: 100000;
+
+  padding: 12px 22px;
+
+  border: 1px solid rgba(255,255,255,0.15);
+
+  background: rgba(0,0,0,0.55);
+
+  color: #d8c7b5;
+
+  font-size: 16px;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  border-radius: 10px;
+
+  backdrop-filter: blur(6px);
+
+  transition: 0.3s;
+
+  box-shadow:
+    0 0 12px rgba(0,0,0,0.8);
+}
+
+#skipIntroBtn:hover {
+
+  background: rgba(120,40,40,0.6);
+
+  transform: scale(1.05);
+}
+
+.menu-btn {
+
+  display: block;
+
+  width: 260px;
+
+  margin: 18px auto;
+
+  padding: 18px;
+
+  font-size: 24px;
+
+  border: 2px solid rgba(180,140,120,0.5);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(35,25,22,0.92),
+      rgba(80,45,40,0.92)
+    );
+
+  color: #d8c7b5;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  border-radius: 10px;
+
+  letter-spacing: 3px;
+
+  box-shadow:
+    0 0 15px rgba(0,0,0,0.8),
+    inset 0 0 12px rgba(255,255,255,0.04);
+}
+
+.menu-btn:hover {
+
+  transform: scale(1.05);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(70,40,35,0.95),
+      rgba(120,55,50,0.95)
+    );
+
+  box-shadow:
+    0 0 18px rgba(120,20,20,0.5);
+}
+
+.exit-btn {
+
+  border-color: rgba(120,40,40,0.5);
+
+  color: #c78f8f;
+}
+
+  .fullscreen-btn {
+    bottom: 15px;
+    right: 15px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 28ch;
+  }
+}
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.6;
+  }
+}
+.option-btn {
+  background: transparent;
+  border: 1px solid rgba(216,255,225,0.4);
+  color: #d8ffe1;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+  margin: 8px;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+.option-btn:hover {
+  background: rgba(216,255,225,0.08);
+}
+@media (max-width: 768px) {
+
+
+    .monitor-text {
+  
+      top: 31%;
+  
+      width: 58%;
+  
+      height: 18%;
+  
+      font-size: 0.8rem;
+  
+      padding: 8px;
+    }
+  
+  }
