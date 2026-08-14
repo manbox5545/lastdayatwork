@@ -413,3 +413,77 @@ body {
     }
   
   }
+/* Normal */
+
+.screenUI {
+    transition: all 1s ease;
+}
+
+
+/* Questions 6–9 */
+
+.screenUI.creepy {
+    background: rgba(20, 0, 0, 0.25);
+}
+
+.screenUI.creepy .question-text {
+    letter-spacing: 2px;
+}
+
+
+/* Questions 10–13 */
+
+.screenUI.scary {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.screenUI.scary .question-text {
+    animation: creepyText 2s infinite;
+}
+
+
+/* Final questions */
+
+.screenUI.terrifying {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.screenUI.terrifying .question-text {
+    animation: terrifyingText 1.2s infinite;
+}
+
+
+@keyframes creepyText {
+
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.65;
+    }
+
+}
+
+
+@keyframes terrifyingText {
+
+    0%, 100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(1px);
+    }
+
+    50% {
+        opacity: 0.45;
+        transform: translateX(-1px);
+    }
+
+    75% {
+        transform: translateX(1px);
+    }
+
+}
